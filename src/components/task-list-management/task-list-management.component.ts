@@ -23,7 +23,6 @@ export class TaskListManagementComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder
   ) {
-    console.log('Constructor', this.listOfTask);
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       storyPoints: ['', Validators.required]
@@ -48,7 +47,6 @@ export class TaskListManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('ngOnit', this.listOfTask);
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       storyPoints: ['', Validators.required]
@@ -63,7 +61,6 @@ export class TaskListManagementComponent implements OnInit {
     this.isTaskDialog = true;
     setTimeout(() => {
       const dialog = document.getElementById("taskDialog");
-      console.log(dialog);
       if (dialog) {
         dialog.style.display = 'block';
       }
@@ -75,7 +72,6 @@ export class TaskListManagementComponent implements OnInit {
     this.isTaskDialog = true;
     setTimeout(() => {
       const dialog = document.getElementById("taskDialog");
-      console.log(dialog);
       if (dialog) {
         dialog.style.display = 'block';
       }
@@ -96,7 +92,6 @@ export class TaskListManagementComponent implements OnInit {
 
   /** To Open the dialog of Mark task as completed.*/
   onMarkAsCompleted(taskObj: any, markTxt: string, event: any) {
-    console.log(taskObj, markTxt, this.markForm.value, event.target.checked);
     const isChecked = event.target.checked;
     this.isConfirmDialog = true;
     if (isChecked) {
@@ -113,66 +108,18 @@ export class TaskListManagementComponent implements OnInit {
   }
 
   onEditTask(taskObj: any, updateTxt: string) {
-    console.log(taskObj);
     this.taskObj = taskObj;
     this.buttonText = updateTxt;
     this.onEditTaskOpenDialog(this.taskObj);
   }
 
   onDeleteTask(taskObj: any, deleteTxt: string) {
-    console.log(taskObj);
     this.taskObj = taskObj;
     this.buttonText = deleteTxt;
     this.onOpenDialog();
   }
 
   checkBoxStatus(event: any) {
-    console.log(event);
     this.isChecked = event;
   }
-
-  // onSubmit() {
-  //   console.log(this.form, this.id, this.buttonText);
-  //   if(this.id) {
-  //     if (this.buttonText === 'Update') {
-  //       this.listOfTask.map(task => {
-  //         if(task.id === this.id) {
-  //           task.title = this.form.value.title;
-  //           task.storyPoints = this.form.value.storyPoints;
-  //         }
-  //       })
-  //     } else if (this.buttonText === 'Confirm') {
-  //       console.log('Confirm');
-  //       this.listOfTask.map((task, index) => {
-  //         if(task.id === this.id) {
-  //           console.log('true');
-  //           this.listOfTask.splice(index, 1);
-  //         }
-  //       });
-  //       // this.onCloseDialog();
-  //     } else if (this.buttonText === 'Mark') {
-  //       console.log('Mark');
-  //       this.listOfTask.map((task, index) => {
-  //         if(task.id === this.id) {
-  //           this.completedTask.push({
-  //             id: this.id,
-  //             title: task.title,
-  //             storyPoints: task.storyPoints
-  //           });
-  //           this.listOfTask.splice(index, 1);
-  //         }
-  //       })
-  //       console.log(this.completedTask);
-  //       console.log(this.listOfTask);
-  //       // this.onCloseDialog();
-  //     }
-  //   } else if(!this.id) {
-  //     const taskObj = this.form.value;
-  //     console.log(taskObj);
-  //     taskObj['id'] = Math.floor(Math.random() * 100);
-  //     console.log(taskObj);
-  //     this.listOfTask.push(taskObj);
-  //   }
-  //   // this.onAddTaskCloseDialog();
-  // }
 }

@@ -20,15 +20,11 @@ export class TaskDialogComponent implements OnInit, OnChanges {
       title: ['', Validators.required],
       storyPoints: ['', Validators.required]
     });
-    console.log(this.taskObj);
   }
 
-  ngOnInit(): void {
-    console.log(this.taskObj, this.form.value);
-  }  
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (this.taskObj && this.buttonText === 'Update') {
       this.form.setValue({title: this.taskObj?.title, storyPoints: this.taskObj?.storyPoints});
       this.id = this.taskObj.id;
@@ -38,7 +34,6 @@ export class TaskDialogComponent implements OnInit, OnChanges {
   /** To close the Add and Update Form Dialog. */
   onAddTaskCloseDialog() {
     const dialog = document.getElementById("taskDialog");
-    console.log(dialog);
     if (dialog) {
       dialog.style.display = 'none';
     }
@@ -46,7 +41,6 @@ export class TaskDialogComponent implements OnInit, OnChanges {
 
   /** To Add and Update the task with this submit function. */
   onSubmit() {
-    console.log(this.form, this.id, this.buttonText, this.listOfTask);
     if(this.id) {
       if (this.buttonText === 'Update') {
         this.listOfTask.map((task: any) => {
@@ -55,15 +49,11 @@ export class TaskDialogComponent implements OnInit, OnChanges {
             task.storyPoints = this.form.value.storyPoints;
           }
         });
-        console.log(this.listOfTask);
       }  
     } else if(!this.id) {
       const taskObj = this.form.value;
-      console.log(taskObj);
       taskObj['id'] = Math.floor(Math.random() * 10000);
-      console.log(taskObj);
       this.listOfTask.push(taskObj);
-      console.log(this.listOfTask);
       this.form.reset();
     }
     this.onAddTaskCloseDialog();

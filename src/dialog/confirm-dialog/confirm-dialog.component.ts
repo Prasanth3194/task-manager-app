@@ -18,7 +18,6 @@ export class ConfirmDialogComponent {
   /** To close the Mark and Delete dialog. */
   onCloseDialog() {
     const dialog = document.getElementById("deleteDialog");
-    console.log(dialog);
     if (dialog) {
       dialog.style.display = 'none';
     }
@@ -26,23 +25,17 @@ export class ConfirmDialogComponent {
 
   /** To Mark Completed and delete the task. */
   onSubmitDialog() {
-    console.log(this.taskObj);
     this.id = this.taskObj.id;
-    console.log(this.id, this.listOfTask, this.completedTask);
     if(this.id) {
       if (this.buttonText === 'Confirm') {
-        console.log('Confirm');
         this.listOfTask.map((task: any, index: any) => {
           if(task.id === this.id) {
-            console.log('true');
             this.listOfTask.splice(index, 1);
           }
         });
-        console.log(this.listOfTask);
         this.onCloseDialog();
       } 
       else if (this.buttonText === 'Mark') {
-        console.log('Mark');
         this.listOfTask.map((task, index) => {
           if(task.id === this.id) {
             this.completedTask.push({
@@ -54,7 +47,6 @@ export class ConfirmDialogComponent {
             this.completedTaskList.emit(this.completedTask);
           }
         });
-        console.log(this.listOfTask);
         this.onCloseDialog();
       }
     }
