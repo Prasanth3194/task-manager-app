@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'task-manager-app';
+  isAboutActive = true;
+  isTaskActive = false;
+
+  onActive(navList: any) {
+    if(navList === 'About') {
+      this.isAboutActive = true;
+      this.isTaskActive = false;
+    } else {
+      this.isAboutActive = false;
+      this.isTaskActive = true;
+    }
+    
+  }
 }
