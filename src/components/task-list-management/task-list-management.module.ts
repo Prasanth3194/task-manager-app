@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TaskListManagementRoutingModule } from './task-list-management-routing.module';
 import { TaskListManagementComponent } from './task-list-management.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddTaskDialogModule } from 'src/dialog/add-task-dialog/add-task-dialog.module';
+import { AddTaskDialogModule } from 'src/dialog/task-dialog/task-dialog.module';
 import { ConfirmDialogModule } from 'src/dialog/confirm-dialog/confirm-dialog.module';
 
 

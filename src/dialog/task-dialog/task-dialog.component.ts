@@ -1,39 +1,30 @@
-import { Component, DestroyRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-task-dialog',
-  templateUrl: './add-task-dialog.component.html',
-  styleUrls: ['./add-task-dialog.component.scss']
+  selector: 'app-task-dialog',
+  templateUrl: './task-dialog.component.html',
+  styleUrls: ['./task-dialog.component.scss']
 })
-export class AddTaskDialogComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() public listOfTask: any[] = []; // recently changed
+export class TaskDialogComponent implements OnInit, OnChanges {
+  @Input() public listOfTask: any[] = [];
   @Input() public taskObj: any;
   @Input() public buttonText: string = 'Add';
-  @Output() addInTaskList = new EventEmitter();
   public form!: FormGroup;
   public id!: number;
-  // public listOfTask: any[] = [];
-  public completedTask: any[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private destroyRef: DestroyRef
+    private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
       storyPoints: ['', Validators.required]
     });
     console.log(this.taskObj);
-    
   }
 
   ngOnInit(): void {
-    console.log(this.taskObj);
-    // if (this.taskObj) {
-    //   this.form.setValue({title: this.taskObj?.title, storyPoints: this.taskObj?.storyPoints});
-    //   this.id = this.taskObj.id;
-    // }
+    console.log(this.taskObj, this.form.value);
   }  
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,15 +35,16 @@ export class AddTaskDialogComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  /** To close the Add and Update Form Dialog. */
   onAddTaskCloseDialog() {
     const dialog = document.getElementById("taskDialog");
     console.log(dialog);
     if (dialog) {
       dialog.style.display = 'none';
-      // this.form.reset();
     }
   }
 
+  /** To Add and Update the task with this submit function. */
   onSubmit() {
     console.log(this.form, this.id, this.buttonText, this.listOfTask);
     if(this.id) {
@@ -64,23 +56,16 @@ export class AddTaskDialogComponent implements OnInit, OnChanges, OnDestroy {
           }
         });
         console.log(this.listOfTask);
-        // this.taskList.emit(this.allTask);
       }  
     } else if(!this.id) {
       const taskObj = this.form.value;
       console.log(taskObj);
-      taskObj['id'] = Math.floor(Math.random() * 100);
+      taskObj['id'] = Math.floor(Math.random() * 10000);
       console.log(taskObj);
       this.listOfTask.push(taskObj);
       console.log(this.listOfTask);
-      // this.addInTaskList.emit(this.listOfTask);
+      this.form.reset();
     }
     this.onAddTaskCloseDialog();
-  }
-
-  ngOnDestroy(): void {
-    this.destroyRef.onDestroy(() => {
-      console.log('UserProfile destruction');
-    });
   }
 }

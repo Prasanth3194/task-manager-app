@@ -1,7 +1,6 @@
 <div id="taskDialog" class="dialog">
     <div class="dialog-content">
         <span class="close" (click)="onAddTaskCloseDialog()">&times;</span>
-        {{taskObj | json}}
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col">

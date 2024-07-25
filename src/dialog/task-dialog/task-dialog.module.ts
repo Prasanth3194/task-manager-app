@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddTaskDialogComponent } from './add-task-dialog.component';
+import { TaskDialogComponent } from './task-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    AddTaskDialogComponent
+    TaskDialogComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule
   ],
   exports: [
-    AddTaskDialogComponent
+    TaskDialogComponent
   ]
 })
 export class AddTaskDialogModule { }

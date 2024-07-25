@@ -13,9 +13,9 @@ export class ConfirmDialogComponent {
   @Input() public listOfTask: any[] = [];
   @Input() public completedTask: any[] = [];
   @Output() public completedTaskList = new EventEmitter();
-  public isChecked: boolean = false;
   public id!: number;
 
+  /** To close the Mark and Delete dialog. */
   onCloseDialog() {
     const dialog = document.getElementById("deleteDialog");
     console.log(dialog);
@@ -23,6 +23,7 @@ export class ConfirmDialogComponent {
       dialog.style.display = 'none';
     }
   }
+
   /** To Mark Completed and delete the task. */
   onSubmitDialog() {
     console.log(this.taskObj);
@@ -53,7 +54,6 @@ export class ConfirmDialogComponent {
             this.completedTaskList.emit(this.completedTask);
           }
         });
-        // console.log(this.completedTask);
         console.log(this.listOfTask);
         this.onCloseDialog();
       }
