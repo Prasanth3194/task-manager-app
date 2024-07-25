@@ -13,7 +13,9 @@ It has two pages with About and Task routes.
     1. npm install
     2. npm run build
     3. npm run start
-
+    4. Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/
 ## Development server
+
+    Task Manager App is deployed in https://task-manager-app-dcc63.web.app
 
     
